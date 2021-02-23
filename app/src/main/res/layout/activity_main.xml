@@ -23,6 +23,14 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/my_nav1"
         tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="340dp" />
+        tools:layout_editor_absoluteY="340dp" >
+
+        <ImageButton
+            android:id="@+id/googleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/google"
+            android:contentDescription="@string/google" />
+    </androidx.fragment.app.FragmentContainerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
