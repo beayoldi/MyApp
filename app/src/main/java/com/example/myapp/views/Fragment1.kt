@@ -34,16 +34,16 @@ class Fragment1 : Fragment() {
         mAuth = FirebaseAuth.getInstance();
         val signIn = binding.signInButton
         signIn.setOnClickListener{
-            /*
+
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
                     .build()
             var mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
             mGoogleSignInClient.signOut()
-            startActivityForResult(mGoogleSignInClient.signInIntent,RC_SIGN_IN)*/
+            startActivityForResult(mGoogleSignInClient.signInIntent,RC_SIGN_IN)
             //inflater.inflate(R.layout.fragment_3, container, false)
-            findNavController().navigate(R.id.action_fragment1_to_fragment3)
+
 
 
         }
@@ -69,6 +69,7 @@ class Fragment1 : Fragment() {
             }catch(e: ApiException){
                 //showAlert()
             }
+            findNavController().navigate(R.id.action_fragment1_to_homeFragment)
         }
 
     }
