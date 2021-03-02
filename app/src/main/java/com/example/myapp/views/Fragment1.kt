@@ -29,11 +29,6 @@ class Fragment1 : Fragment() {
     ): View? {
         binding = Fragment1Binding.inflate(inflater, container, false)
         val view = binding.root
-        return view
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         val signIn = binding.signInButton
@@ -47,14 +42,9 @@ class Fragment1 : Fragment() {
             startActivityForResult(mGoogleSignInClient.signInIntent,RC_SIGN_IN)
 
         }
-
+        return view
     }
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        //updateUI(currentUser)
-    }
+    
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
