@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
 import com.example.myapp.databinding.Fragment1Binding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -33,17 +34,24 @@ class Fragment1 : Fragment() {
         mAuth = FirebaseAuth.getInstance();
         val signIn = binding.signInButton
         signIn.setOnClickListener{
+            /*
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
                     .build()
             var mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
             mGoogleSignInClient.signOut()
-            startActivityForResult(mGoogleSignInClient.signInIntent,RC_SIGN_IN)
+            startActivityForResult(mGoogleSignInClient.signInIntent,RC_SIGN_IN)*/
+            //inflater.inflate(R.layout.fragment_3, container, false)
+            findNavController().navigate(R.id.action_fragment1_to_fragment3)
+
 
         }
-        return view
+
+
+        return  view
     }
+
     
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -62,6 +70,7 @@ class Fragment1 : Fragment() {
                 //showAlert()
             }
         }
+
     }
 
 

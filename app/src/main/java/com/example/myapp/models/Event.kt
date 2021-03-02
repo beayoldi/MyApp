@@ -2,6 +2,7 @@ package com.example.myapp.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "event_table")
 class Event (
@@ -9,7 +10,10 @@ class Event (
         val id: Int,
         val tittle: String,
         val description: String,
-        val capacity: Int
+        val capacity: Int,
+        val date: Date,
+        val type: String,
+        val priv: Boolean
         )
 
 

@@ -11,4 +11,9 @@
     <string name="phone">Phone</string>
     <string name="name">Name</string>
     <string name="lastname">Lastname</string>
+    <string name="Description">Description</string>
+    <string name="aforo">Aforo</string>
+    <string name="type">Type</string>
+    <string name="privado">Private</string>
+    <string name="create">Create Event</string>
 </resources>
