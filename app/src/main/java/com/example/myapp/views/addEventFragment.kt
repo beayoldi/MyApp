@@ -1,27 +1,38 @@
 package com.example.myapp.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapp.databinding.Fragment1Binding
 import com.example.myapp.databinding.FragmentAddEventBinding
+import com.example.myapp.models.Event
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 
 class addEventFragment : Fragment() {
     private lateinit var binding: FragmentAddEventBinding
+    private lateinit var database: DatabaseReference
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
-        val database = FirebaseDatabase.getInstance()
+
+
         binding.createEventbutton.setOnClickListener {
+            database = Firebase.database.reference
+
             val name = binding.eventName.text.toString()
             val desc = binding.descText.text.toString()
-            val capacity = binding.capacity.text
+            val capacity = binding.capacity.text.toString()
+            Log.d("MyTag",capacity.toString())
             val type = binding.type.text.toString()
             binding.privado.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
@@ -32,13 +43,17 @@ class addEventFragment : Fragment() {
                     buttonView.text = "Switch off"
                 }
             }
-            val priv = binding.privado
-            val date = binding.date.text
-            val myRef = database.getReference("message")
-            myRef.setValue(name)
+            val priv = binding.privado.text.toString()
+            val date = binding.date.text.toString()
+            val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
+            writeEvent("beayold",event)
         }
 
         return binding.root
+    }
+    fun writeEvent(user: String, evento: Event){
+        database.child("users").child(user).setValue(evento)
+
     }
 
 }

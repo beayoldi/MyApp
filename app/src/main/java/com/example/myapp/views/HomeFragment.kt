@@ -20,7 +20,10 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        findNavController().navigate(R.id.action_homeFragment_to_addEventFragment)
+        binding.addEvent.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addEventFragment)
+        }
+
         return binding.root
     }
 
