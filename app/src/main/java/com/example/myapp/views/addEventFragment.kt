@@ -19,8 +19,23 @@ class addEventFragment : Fragment() {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
         val database = FirebaseDatabase.getInstance()
         binding.createEventbutton.setOnClickListener {
+            val name = binding.eventName.text.toString()
+            val desc = binding.descText.text.toString()
+            val capacity = binding.capacity.text
+            val type = binding.type.text.toString()
+            binding.privado.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    // The switch is enabled/checked
+                    buttonView.text = "Switch on"
+                } else {
+                    // The switch is disabled
+                    buttonView.text = "Switch off"
+                }
+            }
+            val priv = binding.privado
+            val date = binding.date.text
             val myRef = database.getReference("message")
-            myRef.setValue("Hello, World!")
+            myRef.setValue(name)
         }
 
         return binding.root
