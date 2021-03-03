@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.myapp.databinding.Fragment1Binding
 import com.example.myapp.databinding.FragmentAddEventBinding
 import com.example.myapp.models.Event
 import com.google.firebase.database.DatabaseReference
@@ -16,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 
 class addEventFragment : Fragment() {
     private lateinit var binding: FragmentAddEventBinding
-    private lateinit var database: DatabaseReference
+    private lateinit var database: FirebaseDatabase
 
 
     override fun onCreateView(
@@ -27,7 +26,7 @@ class addEventFragment : Fragment() {
 
 
         binding.createEventbutton.setOnClickListener {
-            database = Firebase.database.reference
+            database = FirebaseDatabase.getInstance()
 
             val name = binding.eventName.text.toString()
             val desc = binding.descText.text.toString()
@@ -46,13 +45,13 @@ class addEventFragment : Fragment() {
             val priv = binding.privado.text.toString()
             val date = binding.date.text.toString()
             val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
-            writeEvent("beayold",event)
+            writeEvent("beayoldi",event)
         }
 
         return binding.root
     }
     fun writeEvent(user: String, evento: Event){
-        database.child("users").child(user).setValue(evento)
+        database.getReference("users/"+user).setValue(evento)
 
     }
 
