@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.myapp.R
 import com.example.myapp.databinding.FragmentAddEventBinding
 import com.example.myapp.models.Event
 import com.google.firebase.auth.ktx.auth
@@ -23,7 +25,6 @@ class addEventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
-
 
         binding.createEventbutton.setOnClickListener {
             database = FirebaseDatabase.getInstance()
@@ -46,11 +47,15 @@ class addEventFragment : Fragment() {
             val date = binding.date.text.toString()
             val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
             val user = Firebase.auth.currentUser
+            val email: String
             user?.let {
-                val email = user.email
+                email = user.email.toString()
                 if (email != null) {
-                    writeEvent(email,event)
+                    writeEvent(email.split('@')[0],event)
                 }
+            }
+            binding.createEventbutton.setOnClickListener {
+                findNavController().navigate(R.id.action_addEventFragment_to_homeFragment)
             }
 
         }
@@ -58,7 +63,18 @@ class addEventFragment : Fragment() {
         return binding.root
     }
     fun writeEvent(user: String, evento: Event){
-        database.getReference("users/"+user).setValue(evento)
+        val ref = database.getReference("users/"+user)
+        var count = 0
+        ref.child("ev_count").get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            count =  it.value.toString().toInt()
+            count+=1
+            database.getReference("users/"+user+"/eventos/evento"+count.toString()).setValue(evento)
+            ref.child("ev_count").setValue(count)
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
+
 
     }
 
