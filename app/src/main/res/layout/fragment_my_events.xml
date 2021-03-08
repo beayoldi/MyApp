@@ -2,25 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout3"
+    android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="views.HomeFragment" >
+    tools:context=".MyEventsFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addEvent"
+        android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/add_icon"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="96dp"
-        android:clickable="true"
-        android:contentDescription="TODO"
-        android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="TODO" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/homeNav"
+        android:id="@+id/myEvNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -29,4 +29,13 @@
         tools:layout_editor_absoluteX="0dp"
         tools:ignore="InvalidId" />
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="301dp"
+        android:layout_marginEnd="171dp"
+        android:text="Switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

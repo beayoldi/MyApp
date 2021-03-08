@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
-import com.example.myapp.databinding.Fragment1Binding
 import com.example.myapp.databinding.FragmentHomeBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
@@ -25,6 +25,14 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         database = FirebaseDatabase.getInstance()
+        //Para cambiar de fragment con el bottom nav
+        binding.homeNav.setOnNavigationItemReselectedListener {
+            when(it.itemId){
+                R.id.my_ev -> findNavController().navigate(R.id.action_homeFragment_to_myEventsFragment)
+
+            }
+        }
+
         val user = Firebase.auth.currentUser
         val email: String
         user?.let {
@@ -48,5 +56,7 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+
 
 }
