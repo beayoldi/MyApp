@@ -44,7 +44,7 @@ class addEventFragment : Fragment() {
             val priv = binding.privado.text.toString()
             val date = binding.date.text.toString()
             val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
-            writeEvent("beayoldi",event)
+            writeEvent("mariabchmml",event)
         }
 
         return binding.root
