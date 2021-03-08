@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapp.databinding.FragmentAddEventBinding
 import com.example.myapp.models.Event
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
@@ -44,7 +45,14 @@ class addEventFragment : Fragment() {
             val priv = binding.privado.text.toString()
             val date = binding.date.text.toString()
             val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
-            writeEvent("mariabchmml",event)
+            val user = Firebase.auth.currentUser
+            user?.let {
+                val email = user.email
+                if (email != null) {
+                    writeEvent(email,event)
+                }
+            }
+
         }
 
         return binding.root
