@@ -25,46 +25,42 @@ class addEventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
-
+        database = FirebaseDatabase.getInstance()
+        val name = binding.eventName.text.toString()
+        val desc = binding.descText.text.toString()
+        val capacity = binding.capacity.text.toString()
+        Log.d("MyTag",capacity.toString())
+        val type = binding.type.text.toString()
+        var priv = false
+        val date = binding.date.text.toString()
+        val user = Firebase.auth.currentUser
+        var email: String
+        binding.privado.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                // The switch is enabled/checked
+                priv = true
+                Log.d("BB",buttonView.text.toString())
+            } else {
+                // The switch is disabled
+                priv = false
+            }
+        }
+        val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
         binding.createEventbutton.setOnClickListener {
-            database = FirebaseDatabase.getInstance()
-
-            val name = binding.eventName.text.toString()
-            val desc = binding.descText.text.toString()
-            val capacity = binding.capacity.text.toString()
-            Log.d("MyTag",capacity.toString())
-            val type = binding.type.text.toString()
-            var priv = false
-            binding.privado.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    // The switch is enabled/checked
-                        priv = true
-                    buttonView.text = "Switch on"
-                } else {
-                    priv = false
-                    // The switch is disabled
-                    buttonView.text = "Switch off"
+            user?.let {
+                email = user.email.toString()
+                if (email != null) {
+                    writeEvent(email.split('@')[0],event)
                 }
             }
+            findNavController().navigate(R.id.action_addEventFragment_to_homeFragment)
 
-            val date = binding.date.text.toString()
-            val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
-            val user = Firebase.auth.currentUser
-            var email: String
-            binding.createEventbutton.setOnClickListener {
-                user?.let {
-                    email = user.email.toString()
-                    if (email != null) {
-                        writeEvent(email.split('@')[0],event)
-                    }
-                }
-                findNavController().navigate(R.id.action_addEventFragment_to_homeFragment)
-            }
 
         }
 
         return binding.root
     }
+
     fun writeEvent(user: String, evento: Event){
         val ref = database.getReference("users/"+user)
         var count = 0

@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/myEventsFragment"
-        android:name="com.example.myapp.MyEventsFragment"
+        android:name="com.example.myapp.views.MyEventsFragment"
         android:label="fragment_my_events"
         tools:layout="@layout/fragment_my_events" >
         <action
