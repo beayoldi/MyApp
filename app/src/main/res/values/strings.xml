@@ -12,7 +12,8 @@
     <string name="name">Name</string>
     <string name="lastname">Lastname</string>
     <string name="Description">Description</string>
-    <string name="aforo">0</string>
+    <string name="aforo">Aforo</string>
+    <string name="date">date</string>
     <string name="type">Type</string>
     <string name="privado">Private</string>
     <string name="create">Create Event</string>
