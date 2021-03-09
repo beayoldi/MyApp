@@ -26,12 +26,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         database = FirebaseDatabase.getInstance()
         //Para cambiar de fragment con el bottom nav
-        binding.homeNav.setOnNavigationItemReselectedListener {
-            when(it.itemId){
-                R.id.my_ev -> findNavController().navigate(R.id.action_homeFragment_to_myEventsFragment)
 
-            }
-        }
+
 
         val user = Firebase.auth.currentUser
         val email: String
@@ -55,6 +51,16 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.homeNav.setOnNavigationItemReselectedListener {
+            when(it.itemId){
+                R.id.my_ev -> findNavController().navigate(R.id.action_homeFragment_to_myEventsFragment)
+
+            }
+        }
     }
 
 

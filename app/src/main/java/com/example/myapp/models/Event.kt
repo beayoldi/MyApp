@@ -13,7 +13,7 @@ class Event (
         val capacity: Int,
         val date: String,
         val type: String,
-        val priv: String//Boolean
+        val priv: Boolean
         )
 
 

@@ -34,27 +34,30 @@ class addEventFragment : Fragment() {
             val capacity = binding.capacity.text.toString()
             Log.d("MyTag",capacity.toString())
             val type = binding.type.text.toString()
+            var priv = false
             binding.privado.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     // The switch is enabled/checked
+                        priv = true
                     buttonView.text = "Switch on"
                 } else {
+                    priv = false
                     // The switch is disabled
                     buttonView.text = "Switch off"
                 }
             }
-            val priv = binding.privado.text.toString()
+
             val date = binding.date.text.toString()
             val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
             val user = Firebase.auth.currentUser
-            val email: String
-            user?.let {
-                email = user.email.toString()
-                if (email != null) {
-                    writeEvent(email.split('@')[0],event)
-                }
-            }
+            var email: String
             binding.createEventbutton.setOnClickListener {
+                user?.let {
+                    email = user.email.toString()
+                    if (email != null) {
+                        writeEvent(email.split('@')[0],event)
+                    }
+                }
                 findNavController().navigate(R.id.action_addEventFragment_to_homeFragment)
             }
 
