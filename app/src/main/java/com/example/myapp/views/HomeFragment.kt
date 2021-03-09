@@ -55,23 +55,22 @@ class HomeFragment : Fragment() {
         val recyclerView=binding.eventList
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(requireContext())
-
+        Log.d("EE","eeeeeeeeee")
         var correo=""
         var correoList = mutableListOf<String>()
         val refe_correo=database.getReference("users/")
         val correoListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                correo = dataSnapshot.value.toString()
-                correoList.add(correo)
-
+                dataSnapshot.children.forEach{
+                    correo=it.key.toString()
+                    correoList.add(correo)
+                }
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 // handle error
             }
         }
         refe_correo.addListenerForSingleValueEvent(correoListener)
-
-
 
         var event: Event? = null  // declare user object outside onCreate Method
         var eventList = mutableListOf<Event>()
