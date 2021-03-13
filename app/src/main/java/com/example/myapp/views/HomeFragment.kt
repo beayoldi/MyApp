@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.example.myapp.models.Event
+import com.example.myapp.models.MyCallback
 import com.google.firebase.database.DatabaseError
 
 
@@ -55,7 +56,33 @@ class HomeFragment : Fragment() {
         val recyclerView=binding.eventList
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(requireContext())
-        Log.d("EE","eeeeeeeeee")
+
+        var eventList = readEvents(object: MyCallback {
+            override fun onCallback(value: List<String>) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCallbackEvent(users:List<Event>) {
+                Log.d("loaded", "load")
+            }
+        })
+
+        adapter.setData(eventList)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.homeNav.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.my_ev -> findNavController().navigate(R.id.action_homeFragment_to_myEventsFragment)
+
+            }
+            true
+        }
+    }
+    fun readUsers(callback:MyCallback): List<String>{
         var correo=""
         var correoList = mutableListOf<String>()
         val refe_correo=database.getReference("users/")
@@ -64,13 +91,30 @@ class HomeFragment : Fragment() {
                 dataSnapshot.children.forEach{
                     correo=it.key.toString()
                     correoList.add(correo)
+
+                    callback.onCallback(correoList)
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
+
                 // handle error
             }
         }
+        //refe_correo.addValueEventListener(correoListener)
         refe_correo.addListenerForSingleValueEvent(correoListener)
+        return correoList
+    }
+
+    fun readEvents(callback:MyCallback):List<Event>{
+        var correoList = readUsers(object: MyCallback {
+            override fun onCallback(users:List<String>) {
+                Log.d("loaded", "load")
+            }
+
+            override fun onCallbackEvent(value: List<Event>) {
+                TODO("Not yet implemented")
+            }
+        })
 
         var event: Event? = null  // declare user object outside onCreate Method
         var eventList = mutableListOf<Event>()
@@ -90,20 +134,8 @@ class HomeFragment : Fragment() {
             }
             refe.addListenerForSingleValueEvent(menuListener)
         }
-        adapter.setData(eventList)
+        return eventList
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.homeNav.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.my_ev -> findNavController().navigate(R.id.action_homeFragment_to_myEventsFragment)
-
-            }
-            true
-        }
     }
 
 

@@ -30,10 +30,10 @@ class MyEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.myEvNav.selectedItemId=R.id.my_ev
         binding.myEvNav.setOnNavigationItemSelectedListener { it ->
             when(it.itemId){
                 R.id.home_ic -> findNavController().navigate(R.id.action_myEventsFragment_to_homeFragment)
-
             }
             true
         }
