@@ -61,7 +61,6 @@ class HomeFragment : Fragment() {
             override fun onCallback(value: List<String>) {
                 TODO("Not yet implemented")
             }
-
             override fun onCallbackEvent(users:List<Event>) {
                 Log.d("loaded", "load")
             }
@@ -91,7 +90,6 @@ class HomeFragment : Fragment() {
                 dataSnapshot.children.forEach{
                     correo=it.key.toString()
                     correoList.add(correo)
-
                     callback.onCallback(correoList)
                 }
             }
@@ -106,16 +104,17 @@ class HomeFragment : Fragment() {
     }
 
     fun readEvents(callback:MyCallback):List<Event>{
-        var correoList = readUsers(object: MyCallback {
+        var correoList = mutableListOf<String>()
+        readUsers(object: MyCallback {
             override fun onCallback(users:List<String>) {
-                Log.d("loaded", "load")
+                correoList.add(users[0])
+                Log.d("tt","Loaded " + correoList.size.toString() + " contacts")
             }
 
             override fun onCallbackEvent(value: List<Event>) {
                 TODO("Not yet implemented")
             }
         })
-
         var event: Event? = null  // declare user object outside onCreate Method
         var eventList = mutableListOf<Event>()
 
