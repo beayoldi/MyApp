@@ -20,7 +20,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem =event_list[position]
         with (holder) {
-            binding.nombreEvento.text = currentItem.tittle.toString()
+            binding.nombreEvento.text =currentItem.tittle.toString()
             binding.aforoEvento.text = currentItem.capacity.toString()
             binding.fechaEvento.text = currentItem.date.toString()
         }
