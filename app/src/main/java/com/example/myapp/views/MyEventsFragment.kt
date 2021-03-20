@@ -60,7 +60,7 @@ class MyEventsFragment : Fragment() {
         var eventList = mutableListOf<Event>()
 
         user?.let {
-            correo = user.email.toString()
+            correo = user.email.toString().split('@')[0]
             val refe = database.getReference("users/$correo/eventos")
             val menuListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
