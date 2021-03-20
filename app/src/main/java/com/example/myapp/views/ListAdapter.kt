@@ -1,5 +1,6 @@
 package com.example.myapp.views
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +11,17 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     private var event_list = emptyList<Event>()
 
-    class MyViewHolder(val binding: EventListHomeBinding): RecyclerView.ViewHolder(binding.root)
+    class MyViewHolder(val context: Context, val binding: EventListHomeBinding): RecyclerView.ViewHolder(binding.root)/*{
+        init {
+            binding.nombreEvento.setOnClickListener{
+
+            }
+        }
+    }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = EventListHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return MyViewHolder(parent.context, binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
