@@ -15,8 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
-import com.example.myapp.models.Event
-import com.example.myapp.models.MyCallback
+import com.example.myapp.models.Evento
 import com.google.firebase.database.DatabaseError
 
 
@@ -78,9 +77,9 @@ class HomeFragment : Fragment() {
         var correo=""
         var correoList = mutableListOf<String>()
         val refe_correo=database.getReference("users/")
-        var event: Event? = null  // declare user object outside onCreate Method
+        var evento: Evento? = null  // declare user object outside onCreate Method
 
-        var eventList = mutableListOf<Event>()
+        var eventList = mutableListOf<Evento>()
 
 
         val correoListener = object : ValueEventListener {
@@ -97,8 +96,8 @@ class HomeFragment : Fragment() {
                     val menuListener = object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             dataSnapshot.children.forEach{
-                                event = it.getValue(Event::class.java)
-                                event?.let { eventList.add(event!!) }
+                                evento = it.getValue(Evento::class.java)
+                                evento?.let { eventList.add(evento!!) }
                             }
                             adapter.setData(eventList)
                         }

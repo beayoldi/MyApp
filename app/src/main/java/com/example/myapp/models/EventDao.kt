@@ -7,5 +7,5 @@ import androidx.room.OnConflictStrategy
 @Dao
 interface EventDao {
     @Insert (onConflict = OnConflictStrategy.ABORT)
-    suspend fun addEvent(event: Event)
+    suspend fun addEvent(evento: Evento)
 }

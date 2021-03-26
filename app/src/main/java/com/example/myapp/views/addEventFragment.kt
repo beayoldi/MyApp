@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentAddEventBinding
-import com.example.myapp.models.Event
+import com.example.myapp.models.Evento
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
@@ -47,7 +47,7 @@ class addEventFragment : Fragment() {
                     priv = false
                 }
             }
-            val event= Event(name, desc, Integer.parseInt(capacity), date, type, priv)
+            val event= Evento(name, desc, Integer.parseInt(capacity), date, type, priv)
             user?.let {
                 email = user.email.toString()
                 if (email != null) {
@@ -62,7 +62,7 @@ class addEventFragment : Fragment() {
         return binding.root
     }
 
-    fun writeEvent(user: String, evento: Event){
+    fun writeEvent(user: String, evento: Evento){
         val ref = database.getReference("users/"+user)
         var count = 0
         ref.child("ev_count").get().addOnSuccessListener {

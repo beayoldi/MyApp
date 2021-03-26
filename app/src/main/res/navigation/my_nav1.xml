@@ -63,5 +63,9 @@
         android:id="@+id/detail_event"
         android:name="com.example.myapp.detail_event"
         android:label="fragment_detail_event"
-        tools:layout="@layout/fragment_detail_event" />
+        tools:layout="@layout/fragment_detail_event" >
+        <argument
+            android:name="evento"
+            app:argType="com.example.myapp.models.Evento" />
+    </fragment>
 </navigation>

@@ -1,7 +1,6 @@
 package com.example.myapp.views
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentMyEventsBinding
-import com.example.myapp.models.Event
+import com.example.myapp.models.Evento
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -55,9 +54,9 @@ class MyEventsFragment : Fragment() {
         val user = Firebase.auth.currentUser
         var correo: String
 
-        var event: Event? = null  // declare user object outside onCreate Method
+        var evento: Evento? = null  // declare user object outside onCreate Method
 
-        var eventList = mutableListOf<Event>()
+        var eventList = mutableListOf<Evento>()
 
         user?.let {
             correo = user.email.toString().split('@')[0]
@@ -65,8 +64,8 @@ class MyEventsFragment : Fragment() {
             val menuListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     dataSnapshot.children.forEach {
-                        event = it.getValue(Event::class.java)
-                        event?.let { eventList.add(event!!) }
+                        evento = it.getValue(Evento::class.java)
+                        evento?.let { eventList.add(evento!!) }
                     }
                     adapter.setData(eventList)
                 }
