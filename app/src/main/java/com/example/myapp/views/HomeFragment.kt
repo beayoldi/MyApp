@@ -97,7 +97,10 @@ class HomeFragment : Fragment() {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             dataSnapshot.children.forEach{
                                 evento = it.getValue(Evento::class.java)
-                                evento?.let { eventList.add(evento!!) }
+                                if(evento?.priv ==false){
+                                    evento?.let { eventList.add(evento!!) }
+                                }
+
                             }
                             adapter.setData(eventList)
                         }

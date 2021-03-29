@@ -11,7 +11,7 @@ import com.example.myapp.R
 
 class detail_event : Fragment() {
 
-    private val args by navArgs<detail_eventArgs>()
+    //private val args by navArgs<>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
