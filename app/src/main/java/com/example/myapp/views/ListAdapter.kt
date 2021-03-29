@@ -1,6 +1,7 @@
 package com.example.myapp.views
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavDirections
@@ -14,12 +15,15 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     private var event_list = emptyList<Evento>()
 
     class MyViewHolder(val context: Context, val binding: EventListHomeBinding): RecyclerView.ViewHolder(binding.root){
-        /*init {
+        init {
             binding.nombreEvento.setOnClickListener{
-                val action: NavDirections =
-                findNavController().navigate()
+                /*val action: NavDirections = FragmentADirections.
+                findNavController().navigate()*/
+
+               /* val intent = Intent(Intent.ACTION_VIEW, detail_event.class)
+                context.startActivity(intent)*/
             }
-        }*/
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/detail_event"
-        android:name="com.example.myapp.detail_event"
+        android:name="com.example.myapp.views.detail_event"
         android:label="fragment_detail_event"
         tools:layout="@layout/fragment_detail_event" >
         <argument
