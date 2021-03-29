@@ -1,12 +1,12 @@
 package com.example.myapp.views
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapp.R
 import com.example.myapp.databinding.EventListHomeBinding
 import com.example.myapp.models.Evento
 
@@ -14,21 +14,27 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     private var event_list = emptyList<Evento>()
 
-    class MyViewHolder(val context: Context, val binding: EventListHomeBinding): RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder(val context: Context, val binding: EventListHomeBinding, eventList: List<Evento>): RecyclerView.ViewHolder(binding.root){
         init {
+            var navController: NavController? = null
             binding.nombreEvento.setOnClickListener{
-                /*val action: NavDirections = FragmentADirections.
-                findNavController().navigate()*/
+                val position: Int = adapterPosition
+                //val evento = eventList[position]
+                navController = Navigation.findNavController(itemView)
+                navController!!.navigate(R.id.event_list)
+                navController!!.navigate(position)
+                navController!!.navigate(R.id.action_homeFragment_to_detail_event)
 
-               /* val intent = Intent(Intent.ACTION_VIEW, detail_event.class)
-                context.startActivity(intent)*/
+                //val action = HomeFragmentDirections.actionHomeFragmentToDetailEvent(evento)
+                //Toast.makeText(itemView.context, "You clicked on item ${position +1}", Toast.LENGTH_SHORT).show()
+
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = EventListHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(parent.context, binding)
+        return MyViewHolder(parent.context, binding, event_list)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
