@@ -17,6 +17,8 @@ class detail_event : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail_event, container, false)
+
+       // view.textView.text = "EVENTO: ${args.event_list[position]}"
     }
 
 
