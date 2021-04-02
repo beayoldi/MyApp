@@ -7,18 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.myapp.R
+import com.example.myapp.databinding.FragmentDetailEventBinding
+import com.example.myapp.databinding.FragmentHomeBinding
 
 
 class detail_event : Fragment() {
 
-    //private val args by navArgs<>()
+    private lateinit var binding: FragmentDetailEventBinding
+    private val args by navArgs<detail_eventArgs>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_event, container, false)
+        binding = FragmentDetailEventBinding.inflate(inflater, container, false)
+        binding.nombre.text = "${args.evento.tittle}"
+        return binding.root
 
-       // view.textView.text = "EVENTO: ${args.event_list[position]}"
+
     }
 
 

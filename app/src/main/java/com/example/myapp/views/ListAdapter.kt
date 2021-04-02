@@ -19,13 +19,10 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
             var navController: NavController? = null
             binding.nombreEvento.setOnClickListener{
                 val position: Int = adapterPosition
-                //val evento = eventList[position]
+                val event:Evento = eventList[position]
                 navController = Navigation.findNavController(itemView)
-                navController!!.navigate(R.id.event_list)
-                navController!!.navigate(position)
-                navController!!.navigate(R.id.action_homeFragment_to_detail_event)
-
-                //val action = HomeFragmentDirections.actionHomeFragmentToDetailEvent(evento)
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailEvent(event)
+                navController!!.navigate(action)
                 //Toast.makeText(itemView.context, "You clicked on item ${position +1}", Toast.LENGTH_SHORT).show()
 
             }
