@@ -24,8 +24,8 @@
 
     <TextView
         android:id="@+id/ubicacion"
-        android:layout_width="228dp"
-        android:layout_height="82dp"
+        android:layout_width="241dp"
+        android:layout_height="78dp"
         android:layout_marginStart="75dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="108dp"
@@ -33,6 +33,7 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/fecha"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
@@ -54,28 +55,33 @@
         android:id="@+id/aforo"
         android:layout_width="251dp"
         android:layout_height="70dp"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="84dp"
         android:layout_marginBottom="18dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/descripcion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fecha" />
 
     <TextView
         android:id="@+id/descripcion"
         android:layout_width="253dp"
         android:layout_height="67dp"
-        android:layout_marginStart="81dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="77dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="144dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aforo" />
+
+    <Button
+        android:id="@+id/joinButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="159dp"
+        android:text="@string/join"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

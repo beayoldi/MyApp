@@ -98,6 +98,8 @@ class HomeFragment : Fragment() {
                             dataSnapshot.children.forEach{
                                 evento = it.getValue(Evento::class.java)
                                 if(evento?.priv ==false){
+                                    Log.i("Hola caracola", "Got value ${it.key}")
+                                    //it.key nos da el nombre del evento en la base de datos de firebase como por ej evento18
                                     evento?.let { eventList.add(evento!!) }
                                 }
 

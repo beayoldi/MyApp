@@ -1,5 +1,6 @@
 package com.example.myapp.views
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.myapp.models.Evento
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 
 class addEventFragment : Fragment() {
@@ -26,7 +28,16 @@ class addEventFragment : Fragment() {
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
         database = FirebaseDatabase.getInstance()
-
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        binding.date.setOnClickListener {
+            val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                binding.dateTxt.text = ""+dayOfMonth+"/"+(month+1)+"/"+year
+            }, year, month, day)
+            dpd.show()
+        }
         var priv = false
         binding.privado.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -43,12 +54,13 @@ class addEventFragment : Fragment() {
             val desc = binding.descText.text.toString()
             val capacity = binding.capacity.text.toString()
             val type = binding.type.text.toString()
+            val location = binding.eventLoc.text.toString()
+            val date = binding.dateTxt.text.toString()
 
-            val date = binding.date.text.toString()
             val user = Firebase.auth.currentUser
             var email: String
 
-            val event= Evento(name, desc, Integer.parseInt(capacity), date, type, priv)
+            val event= Evento(name, desc, Integer.parseInt(capacity), location,date, type, priv)
             user?.let {
                 email = user.email.toString()
                 if (email != null) {
@@ -70,6 +82,8 @@ class addEventFragment : Fragment() {
             Log.i("firebase", "Got value ${it.value}")
             count =  it.value.toString().toInt()
             count+=1
+            //val event= Evento(evento.tittle, evento.description, Integer.parseInt(evcapacity), location,date, type, priv)
+
             database.getReference("users/"+user+"/eventos/evento"+count.toString()).setValue(evento)
             ref.child("ev_count").setValue(count)
         }.addOnFailureListener{

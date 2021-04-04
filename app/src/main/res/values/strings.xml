@@ -5,7 +5,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="google">Google</string>
-    <string name="string_password">password</string>
+    <string name="string_password">Password</string>
     <string name="acceder">Acceder</string>
     <string name="registrar">Registrar</string>
     <string name="phone">Phone</string>
@@ -13,8 +13,10 @@
     <string name="lastname">Lastname</string>
     <string name="Description">Description</string>
     <string name="aforo">Aforo</string>
-    <string name="date">date</string>
+    <string name="date">Date</string>
     <string name="type">Type</string>
     <string name="privado">Private</string>
     <string name="create">Create Event</string>
+    <string name="location">Location</string>
+    <string name="join">Unirse</string>
 </resources>
