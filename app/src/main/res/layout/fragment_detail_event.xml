@@ -16,24 +16,11 @@
         android:layout_marginEnd="93dp"
         android:layout_marginBottom="22dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/creador"
+        app:layout_constraintBottom_toTopOf="@+id/ubicacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/creador"
-        android:layout_width="247dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="22dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/ubicacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
     <TextView
         android:id="@+id/ubicacion"
@@ -47,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@+id/fecha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creador" />
+        app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
     <TextView
         android:id="@+id/fecha"

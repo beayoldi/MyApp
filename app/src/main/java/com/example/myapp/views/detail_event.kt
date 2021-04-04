@@ -20,6 +20,9 @@ class detail_event : Fragment() {
                               savedInstanceState: Bundle?): View? {
         binding = FragmentDetailEventBinding.inflate(inflater, container, false)
         binding.nombre.text = "${args.evento.tittle}"
+        binding.aforo.text = "${args.evento.capacity}"
+        binding.descripcion.text = "${args.evento.description}"
+        binding.fecha.text = "${args.evento.date}"
         return binding.root
 
 
