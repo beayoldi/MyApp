@@ -11,20 +11,8 @@
         android:label="fragment_1"
         tools:layout="@layout/fragment_1" >
         <action
-            android:id="@+id/action_fragment1_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_fragment1_to_fragment2"
-            app:destination="@id/fragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.myapp.views.Fragment2"
-        android:label="fragment_2"
-        tools:layout="@layout/fragment_2" >
-        <action
-            android:id="@+id/action_fragment2_to_fragment1"
-            app:destination="@id/fragment1" />
+            android:id="@+id/action_fragment1_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEventFragment"
@@ -67,5 +55,17 @@
         <argument
             android:name="evento"
             app:argType="com.example.myapp.models.Evento" />
+        <action
+            android:id="@+id/action_detail_event_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.myapp.views.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_weatherFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

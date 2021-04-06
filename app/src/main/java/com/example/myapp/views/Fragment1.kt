@@ -69,7 +69,7 @@ class Fragment1 : Fragment() {
             }catch(e: ApiException){
                 //showAlert()
             }
-            findNavController().navigate(R.id.action_fragment1_to_homeFragment)
+            findNavController().navigate(R.id.action_fragment1_to_weatherFragment)
         }
 
     }

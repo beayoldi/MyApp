@@ -31,9 +31,9 @@ class HomeFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
 
         val user = Firebase.auth.currentUser
-        val email: String
+
         user?.let {
-            email = user.email.toString()
+            val email = user.email.toString()
             if (email != null) {
                 val ref=database.getReference("users/"+email.split('@')[0])
                 ref.child("ev_count").get().addOnSuccessListener {
@@ -51,7 +51,11 @@ class HomeFragment : Fragment() {
         binding.addEvent.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addEventFragment)
         }
-        readUsers()
+        user?.let {
+            val email = user.email.toString().split('@')[0]
+            readUsers(email)
+        }
+
 
 
 
@@ -68,7 +72,7 @@ class HomeFragment : Fragment() {
             true
         }
     }
-    fun readUsers(): List<String>{
+    fun readUsers(us: String): List<String>{
         val adapter =ListAdapter()
         val recyclerView=binding.eventList
         recyclerView.adapter=adapter
@@ -86,7 +90,9 @@ class HomeFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach{
                     correo=it.key.toString()
-                    correoList.add(correo)
+                    if(correo!=us) {
+                        correoList.add(correo)
+                    }
 
                 }
 
@@ -97,7 +103,7 @@ class HomeFragment : Fragment() {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             dataSnapshot.children.forEach{
                                 evento = it.getValue(Evento::class.java)
-                                if(evento?.priv ==false){
+                                if(evento?.priv ==false && evento?.capacity!=0){
                                     //Log.i("Hola caracola", "Got value ${it.key}")
                                     evento!!.id=it.key
                                     //it.key nos da el nombre del evento en la base de datos de firebase como por ej evento18
