@@ -32,7 +32,7 @@ class detail_event : Fragment() {
         binding.fecha.text = "${args.evento.date}"
         binding.ubicacion.text = "${args.evento.location}"
         Log.i("firebase", "Got value ${args.evento.id}")
-
+        val id=args.evento.id
         var email: String
         val user = Firebase.auth.currentUser
 
@@ -41,7 +41,9 @@ class detail_event : Fragment() {
             user?.let {
                 email = user.email.toString()
                 if (email != null) {
-                    reduceCounter(email.split('@')[0])
+                    if (id != null) {
+                        reduceCounter(email.split('@')[0],id)
+                    }
                 }
             }
         }
@@ -49,12 +51,14 @@ class detail_event : Fragment() {
 
 
     }
-    fun reduceCounter(user: String){
-        val ref = database.getReference("users/"+user)
+    fun reduceCounter(user: String,id: String){
+        val ref = database.getReference("users/"+user+"/eventos/"+id)
         var count = 0
-        ref.child("ev_count").get().addOnSuccessListener {
+        ref.child("capacity").get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
-            ref.child("ev_count").setValue(count)
+            var aux: Int= it.value as Int
+            aux = aux-1
+            ref.child("capacity").setValue(aux)
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
