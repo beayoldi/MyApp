@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/nombre"
-        android:layout_width="246dp"
-        android:layout_height="61dp"
+        android:layout_width="245dp"
+        android:layout_height="23dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="83dp"
         android:layout_marginEnd="93dp"
@@ -24,10 +24,10 @@
 
     <TextView
         android:id="@+id/ubicacion"
-        android:layout_width="241dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="11dp"
+        android:layout_width="221dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="108dp"
         android:layout_marginBottom="7dp"
         android:text="TextView"
@@ -35,13 +35,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 
     <TextView
         android:id="@+id/fecha"
-        android:layout_width="247dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="75dp"
+        android:layout_width="234dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="72dp"
         android:layout_marginEnd="89dp"
         android:layout_marginBottom="24dp"
         android:text="TextView"
@@ -53,26 +53,30 @@
 
     <TextView
         android:id="@+id/aforo"
-        android:layout_width="251dp"
-        android:layout_height="70dp"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="88dp"
         android:layout_marginBottom="18dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/descripcion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fecha" />
 
     <TextView
         android:id="@+id/descripcion"
-        android:layout_width="253dp"
-        android:layout_height="67dp"
+        android:layout_width="257dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="144dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aforo" />
 
     <Button
@@ -84,4 +88,5 @@
         android:text="@string/join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
