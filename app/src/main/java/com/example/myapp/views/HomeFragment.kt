@@ -1,11 +1,16 @@
 package com.example.myapp.views
 
+import android.os.Build
 import android.os.Bundle
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
@@ -16,22 +21,37 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.example.myapp.models.Evento
+import com.example.myapp.viewModels.EventViewModel
 import com.google.firebase.database.DatabaseError
+import javax.crypto.KeyGenerator
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var database: FirebaseDatabase
+    private lateinit var eventViewModel: EventViewModel
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         database = FirebaseDatabase.getInstance()
+        eventViewModel = ViewModelProvider(this).get(EventViewModel::class.java)
 
         val user = Firebase.auth.currentUser
+        if(!eventViewModel.checkKey()) {
+            val keyGeneretor = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore")
+            val keyGenParameterSpec = KeyGenParameterSpec
+                    .Builder("MyKeyStore", KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                    .build()
 
+            keyGeneretor.init(keyGenParameterSpec)
+            keyGeneretor.generateKey()
+        }
         user?.let {
             val email = user.email.toString()
             if (email != null) {
@@ -73,7 +93,7 @@ class HomeFragment : Fragment() {
         }
     }
     fun readUsers(us: String): List<String>{
-        val adapter =ListAdapter()
+        val adapter =ListAdapter(eventViewModel)
         val recyclerView=binding.eventList
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(requireContext())

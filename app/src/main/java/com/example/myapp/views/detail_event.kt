@@ -1,11 +1,10 @@
 package com.example.myapp.views
 
-import android.content.ContentResolver
-import android.content.ContentValues
+
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +14,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentDetailEventBinding
+import com.example.myapp.viewModels.EventViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
-class detail_event : Fragment() {
+class detail_event() : Fragment() {
 
     private lateinit var binding: FragmentDetailEventBinding
     private lateinit var database: FirebaseDatabase
@@ -36,7 +36,7 @@ class detail_event : Fragment() {
         binding.nombre.text = "${args.evento.tittle}"
         binding.aforo.text = "${args.evento.capacity}"
         binding.descripcion.text = "${args.evento.description}"
-        binding.fecha.text = "${args.evento.date}"
+        binding.fecha.text =  "${args.evento.date}"
         binding.ubicacion.text = "${args.evento.location}"
         Log.i("firebase", "Got value ${args.evento.id}")
         val id=args.evento.id

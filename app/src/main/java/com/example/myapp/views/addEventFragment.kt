@@ -2,15 +2,18 @@ package com.example.myapp.views
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentAddEventBinding
 import com.example.myapp.models.Evento
+import com.example.myapp.viewModels.EventViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
@@ -20,6 +23,7 @@ import java.util.*
 class addEventFragment : Fragment() {
     private lateinit var binding: FragmentAddEventBinding
     private lateinit var database: FirebaseDatabase
+    private lateinit var eventViewModel: EventViewModel
 
 
     override fun onCreateView(
@@ -27,6 +31,7 @@ class addEventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
+        eventViewModel = ViewModelProvider(this).get(EventViewModel::class.java)
         database = FirebaseDatabase.getInstance()
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -59,8 +64,11 @@ class addEventFragment : Fragment() {
 
             val user = Firebase.auth.currentUser
             var email: String
+            val pair = eventViewModel.encryptData(location.toString())
+            val encodedIV: String = Base64.encodeToString(pair.first, Base64.DEFAULT)
+            val encodedLoc: String = Base64.encodeToString(pair.second, Base64.DEFAULT)
 
-            val event= Evento(name, desc, Integer.parseInt(capacity), location,date, type, priv)
+            val event= Evento(name, desc, Integer.parseInt(capacity), location,date, type, priv,encodedIV,encodedLoc)
             user?.let {
                 email = user.email.toString()
                 if (email != null) {

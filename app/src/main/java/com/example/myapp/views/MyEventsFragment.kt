@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentMyEventsBinding
 import com.example.myapp.models.Evento
+import com.example.myapp.viewModels.EventViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,9 +19,10 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 
-class MyEventsFragment : Fragment() {
+class MyEventsFragment() : Fragment() {
     private lateinit var binding: FragmentMyEventsBinding
     private lateinit var database: FirebaseDatabase
+    private lateinit var eventViewModel: EventViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +48,7 @@ class MyEventsFragment : Fragment() {
     }
 
     fun readUsers(){
-        val adapter =ListAdapter()
+        val adapter =ListAdapter(eventViewModel)
         val recyclerView=binding.myEvList
         recyclerView.adapter=adapter
         recyclerView.layoutManager= LinearLayoutManager(requireContext())

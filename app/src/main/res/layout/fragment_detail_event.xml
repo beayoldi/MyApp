@@ -7,86 +7,106 @@
     android:layout_height="match_parent"
     tools:context=".views.detail_event">
 
+
     <TextView
         android:id="@+id/nombre"
-        android:layout_width="245dp"
-        android:layout_height="23dp"
+        android:layout_width="257dp"
+        android:layout_height="35dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="83dp"
-        android:layout_marginEnd="93dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginTop="68dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/ubicacion"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/ubicacion"
-        android:layout_width="221dp"
-        android:layout_height="38dp"
+        android:layout_width="257dp"
+        android:layout_height="35dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="12dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/fecha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+        app:layout_constraintTop_toBottomOf="@+id/ubText" />
 
     <TextView
         android:id="@+id/fecha"
-        android:layout_width="234dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="122dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="41dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/aforo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fecha2"
+        app:layout_constraintTop_toBottomOf="@+id/ubicacion" />
+
+    <TextView
+        android:id="@+id/fecha2"
+        android:layout_width="122dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="40dp"
+        android:text="Fecha:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ubicacion" />
 
     <TextView
         android:id="@+id/aforo"
-        android:layout_width="249dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="18dp"
+        android:layout_width="119dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/descripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/aforo2"
         app:layout_constraintTop_toBottomOf="@+id/fecha" />
+
+    <TextView
+        android:id="@+id/aforo2"
+        android:layout_width="119dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="37dp"
+        android:text="Aforo:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fecha2" />
 
     <TextView
         android:id="@+id/descripcion"
         android:layout_width="257dp"
-        android:layout_height="119dp"
+        android:layout_height="30dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="144dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aforo" />
+        app:layout_constraintTop_toBottomOf="@+id/desText" />
 
     <Button
         android:id="@+id/joinButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="47dp"
         android:text="@string/join"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aforo" />
+
+    <TextView
+        android:id="@+id/desText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="18dp"
+        android:text="Descripción:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+
+    <TextView
+        android:id="@+id/ubText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="9dp"
+        android:text="Localización:"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

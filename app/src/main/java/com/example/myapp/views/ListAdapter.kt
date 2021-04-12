@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapp.R
+import android.util.Base64
 import com.example.myapp.databinding.EventListHomeBinding
 import com.example.myapp.models.Evento
+import com.example.myapp.viewModels.EventViewModel
 
-class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter(private val viewModel: EventViewModel): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     private var event_list = emptyList<Evento>()
 
@@ -40,6 +41,9 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
             binding.nombreEvento.text =currentItem.tittle.toString()
             binding.aforoEvento.text = currentItem.capacity.toString()
             binding.fechaEvento.text = currentItem.date.toString()
+            val iv: ByteArray = Base64.decode(currentItem.iv, Base64.DEFAULT)
+            val date: ByteArray = Base64.decode(currentItem.encryptedLoc, Base64.DEFAULT)
+            binding.locEvento.text = viewModel.decryptData(iv, date)
         }
     }
 

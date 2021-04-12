@@ -14,6 +14,8 @@ data class Evento(val tittle: String?=null,
                   val date: String?=null,
                   val type: String?=null,
                   val priv: Boolean?=null,
+                  val iv: String?=null,
+                  val encryptedLoc:String?=null,
                   var id: String?=null) :Parcelable
 
 
