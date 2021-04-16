@@ -51,7 +51,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="105dp"
         android:gravity="center"
-        android:text="@string/_24_c"
+        android:text="@string/_0_c"
         android:textSize="90sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

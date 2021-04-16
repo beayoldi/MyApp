@@ -68,11 +68,13 @@ class addEventFragment : Fragment() {
             val encodedIV: String = Base64.encodeToString(pair.first, Base64.DEFAULT)
             val encodedLoc: String = Base64.encodeToString(pair.second, Base64.DEFAULT)
 
-            val event= Evento(name, desc, Integer.parseInt(capacity), location,date, type, priv,encodedIV,encodedLoc)
+
             user?.let {
                 email = user.email.toString()
                 if (email != null) {
-                    writeEvent(email.split('@')[0],event)
+                    val event= Evento(name, desc, Integer.parseInt(capacity), location,date, type, priv,encodedIV,encodedLoc,email.split('@')[0])
+                    writeEvent(event)
+                    //writeEvent(email.split('@')[0],event)
                 }
             }
             findNavController().navigate(R.id.action_addEventFragment_to_homeFragment)
@@ -83,7 +85,8 @@ class addEventFragment : Fragment() {
         return binding.root
     }
 
-    fun writeEvent(user: String, evento: Evento){
+    fun writeEvent(evento: Evento){
+        val user = evento.user
         val ref = database.getReference("users/"+user)
         var count = 0
         ref.child("ev_count").get().addOnSuccessListener {

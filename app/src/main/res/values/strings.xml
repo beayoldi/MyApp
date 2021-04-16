@@ -22,7 +22,7 @@
     <string name="add">Madrid, Es</string>
     <string name="updated_at">Updated At</string>
     <string name="clear_sky">Clear Sky</string>
-    <string name="_24_c">24ºC</string>
+    <string name="_0_c">24ºC</string>
     <string name="min_temp">Min temp</string>
     <string name="max_temp">Max Temp</string>
     <string name="capacidad">Capacidad:</string>

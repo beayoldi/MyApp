@@ -46,6 +46,12 @@
         <action
             android:id="@+id/action_myEventsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_myEventsFragment_to_detail_event"
+            app:destination="@id/detail_event" />
+        <action
+            android:id="@+id/action_myEventsFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/detail_event"

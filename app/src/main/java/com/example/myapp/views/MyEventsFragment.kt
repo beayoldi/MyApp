@@ -22,7 +22,6 @@ import com.google.firebase.ktx.Firebase
 class MyEventsFragment() : Fragment() {
     private lateinit var binding: FragmentMyEventsBinding
     private lateinit var database: FirebaseDatabase
-    private lateinit var eventViewModel: EventViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +29,10 @@ class MyEventsFragment() : Fragment() {
     ): View? {
         binding = FragmentMyEventsBinding.inflate(inflater, container, false)
         database = FirebaseDatabase.getInstance()
+
+        binding.addMyEvent.setOnClickListener {
+            findNavController().navigate(R.id.action_myEventsFragment_to_addEventFragment)
+        }
 
         readUsers()
 
@@ -48,7 +51,7 @@ class MyEventsFragment() : Fragment() {
     }
 
     fun readUsers(){
-        val adapter =ListAdapter(eventViewModel)
+        val adapter =ListAdapterMyEv()
         val recyclerView=binding.myEvList
         recyclerView.adapter=adapter
         recyclerView.layoutManager= LinearLayoutManager(requireContext())

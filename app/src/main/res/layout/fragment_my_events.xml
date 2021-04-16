@@ -8,7 +8,7 @@
     tools:context="views.MyEventsFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/addMyEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -37,7 +37,7 @@
         android:layout_marginTop="58dp"
         android:layout_marginEnd="19dp"
         app:layout_constraintBottom_toTopOf="@+id/myEvNav"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        app:layout_constraintEnd_toStartOf="@+id/addMyEvent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
