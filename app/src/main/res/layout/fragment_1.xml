@@ -21,11 +21,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="242dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="184dp"
-        android:src="@mipmap/icon"
+        android:id="@+id/imageView4"
+        android:layout_width="692dp"
+        android:layout_height="611dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="116dp"
+        android:src="@mipmap/icono_letra_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
