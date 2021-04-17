@@ -21,19 +21,22 @@
         android:id="@+id/eventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
         android:autofillHints=""
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/event_loc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="100dp"
         android:autofillHints=""
@@ -41,6 +44,7 @@
         android:hint="@string/location"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
@@ -48,13 +52,15 @@
         android:layout_width="212dp"
         android:layout_height="94dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="99dp"
         android:ems="10"
         android:hint="@string/Description"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventName" />
+        app:layout_constraintTop_toBottomOf="@+id/event_loc" />
 
     <EditText
         android:id="@+id/capacity"
@@ -62,10 +68,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="98dp"
         android:ems="10"
+        android:hint="@string/aforo"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:hint="@string/aforo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descText" />
 
@@ -75,9 +83,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="98dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/type"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/capacity" />
 
@@ -85,10 +95,13 @@
         android:id="@+id/createEventbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="147dp"
         android:layout_marginTop="54dp"
         android:layout_marginEnd="132dp"
+        android:backgroundTint="#009688"
         android:text="@string/create"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/privado" />
 
     <Switch
@@ -109,6 +122,7 @@
         android:layout_marginTop="23dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="#009688"
         android:text="@string/date"
         app:layout_constraintBottom_toTopOf="@+id/privado"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,10 +132,12 @@
         android:id="@+id/dateTxt"
         android:layout_width="88dp"
         android:layout_height="38dp"
+        android:layout_marginStart="102dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="33dp"
         android:text="@string/date"
         app:layout_constraintEnd_toStartOf="@+id/date"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/type" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
