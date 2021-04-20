@@ -74,7 +74,6 @@ class addEventFragment : Fragment() {
                 if (email != null) {
                     val event= Evento(name, desc, Integer.parseInt(capacity), location,date, type, priv,encodedIV,encodedLoc,email.split('@')[0])
                     writeEvent(event)
-                    //writeEvent(email.split('@')[0],event)
                 }
             }
             findNavController().navigate(R.id.action_addEventFragment_to_homeFragment)
@@ -86,15 +85,13 @@ class addEventFragment : Fragment() {
     }
 
     fun writeEvent(evento: Evento){
+        //Para meter un evento en la base de datos de firebase
         val user = evento.user
         val ref = database.getReference("users/"+user)
         var count = 0
         ref.child("ev_count").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
             count =  it.value.toString().toInt()
             count+=1
-            //val event= Evento(evento.tittle, evento.description, Integer.parseInt(evcapacity), location,date, type, priv)
-
             database.getReference("users/"+user+"/eventos/evento"+count.toString()).setValue(evento)
             ref.child("ev_count").setValue(count)
         }.addOnFailureListener{

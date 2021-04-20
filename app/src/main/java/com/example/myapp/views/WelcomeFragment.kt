@@ -2,14 +2,13 @@ package com.example.myapp.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
-import com.example.myapp.databinding.Fragment1Binding
+import com.example.myapp.databinding.FragmentWelcomeBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -18,8 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class Fragment1 : Fragment() {
-    private lateinit var binding: Fragment1Binding
+class WelcomeFragment : Fragment() {
+    private lateinit var binding: FragmentWelcomeBinding
     private lateinit var mAuth: FirebaseAuth
     private var RC_SIGN_IN = 100
 
@@ -28,7 +27,7 @@ class Fragment1 : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        binding = Fragment1Binding.inflate(inflater, container, false)
+        binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         val view = binding.root
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -42,21 +41,13 @@ class Fragment1 : Fragment() {
             var mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
             mGoogleSignInClient.signOut()
             startActivityForResult(mGoogleSignInClient.signInIntent,RC_SIGN_IN)
-            //inflater.inflate(R.layout.fragment_3, container, false)
-
-
-
         }
-
-
         return  view
     }
 
     
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentMyEventsBinding
 import com.example.myapp.models.Evento
-import com.example.myapp.viewModels.EventViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -59,7 +58,7 @@ class MyEventsFragment() : Fragment() {
         val user = Firebase.auth.currentUser
         var correo: String
 
-        var evento: Evento? = null  // declare user object outside onCreate Method
+        var evento: Evento? = null
 
         var eventList = mutableListOf<Evento>()
 
@@ -70,6 +69,7 @@ class MyEventsFragment() : Fragment() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     dataSnapshot.children.forEach {
                         evento = it.getValue(Evento::class.java)
+                        evento!!.id=it.key
                         evento?.let { eventList.add(evento!!) }
                     }
                     adapter.setData(eventList)

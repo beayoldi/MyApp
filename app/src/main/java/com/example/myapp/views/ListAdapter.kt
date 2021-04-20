@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Base64
-import com.example.myapp.databinding.EventListHomeBinding
+import com.example.myapp.databinding.FragmentEventListHomeBinding
 import com.example.myapp.models.Evento
 import com.example.myapp.viewModels.EventViewModel
 
@@ -15,7 +15,7 @@ class ListAdapter(private val viewModel: EventViewModel): RecyclerView.Adapter<L
 
     private var event_list = emptyList<Evento>()
 
-    class MyViewHolder(val context: Context, val binding: EventListHomeBinding, eventList: List<Evento>): RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder(val context: Context, val binding: FragmentEventListHomeBinding, eventList: List<Evento>): RecyclerView.ViewHolder(binding.root){
         init {
             var navController: NavController? = null
             binding.nombreEvento.setOnClickListener{
@@ -24,14 +24,12 @@ class ListAdapter(private val viewModel: EventViewModel): RecyclerView.Adapter<L
                 navController = Navigation.findNavController(itemView)
                 val action = HomeFragmentDirections.actionHomeFragmentToDetailEvent(event)
                 navController!!.navigate(action)
-                //Toast.makeText(itemView.context, "You clicked on item ${position +1}", Toast.LENGTH_SHORT).show()
-
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = EventListHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = FragmentEventListHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(parent.context, binding, event_list)
     }
 

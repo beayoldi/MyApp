@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.example.myapp.views.Fragment1"
+        android:name="com.example.myapp.views.WelcomeFragment"
         android:label="fragment_1"
-        tools:layout="@layout/fragment_1" >
+        tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_fragment1_to_weatherFragment"
             app:destination="@id/weatherFragment" />
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/detail_event"
-        android:name="com.example.myapp.views.detail_event"
+        android:name="com.example.myapp.views.detailEventFragment"
         android:label="fragment_detail_event"
         tools:layout="@layout/fragment_detail_event" >
         <argument

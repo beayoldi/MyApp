@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="views.Fragment1">
+    tools:context="views.WelcomeFragment">
 
 
     <com.google.android.gms.common.SignInButton
